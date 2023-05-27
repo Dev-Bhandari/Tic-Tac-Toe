@@ -67,13 +67,14 @@ class _GameState extends State<Game> {
 
                 return InkWell(
                   onTap: () {
-                    _winner != 3
-                        ? _winner = ticTacToe.move(
-                            player: _player, row: row, column: column)
+                    _winner != 3 &&
+                            ticTacToe.getBoard(row: row, column: column) == 0
+                        ? setState(() {
+                            _winner = ticTacToe.move(
+                                player: _player, row: row, column: column);
+                          })
                         : null;
                     _player = _player == 1 ? -1 : 1;
-
-                    _winner != 3 ? setState(() {}) : null;
                   },
                   child: Container(
                     height: 30,
